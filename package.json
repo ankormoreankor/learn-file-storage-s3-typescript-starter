@@ -3,9 +3,19 @@
   "module": "/src/index.ts",
   "type": "module",
   "private": true,
+  "scripts": {
+    "dev": "bun run src/index.ts",
+    "lint": "eslint .",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "@types/bun": "^1.2.7",
-    "@types/jsonwebtoken": "^9.0.9"
+    "@types/jsonwebtoken": "^9.0.9",
+    "eslint": "^10.10.0",
+    "prettier": "^3.9.7",
+    "typescript-eslint": "^8.70.0"
   },
   "peerDependencies": {
     "typescript": "^5"
