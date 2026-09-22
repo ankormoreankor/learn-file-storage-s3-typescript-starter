@@ -5,6 +5,7 @@ import type { ApiConfig } from "../config";
 import type { BunRequest } from "bun";
 import { BadRequestError, NotFoundError, UserForbiddenError } from "./errors";
 import path from "node:path";
+import crypto from "node:crypto";
 
 const getFileType = (mimeType: string): string => {
   if (mimeType !== "image/jpeg" && mimeType !== "image/png") {
@@ -55,7 +56,7 @@ export async function handlerUploadThumbnail(cfg: ApiConfig, req: BunRequest) {
   }
 
   const fileType = getFileType(mediaType);
-  const videoName = `${videoId}.${fileType}`;
+  const videoName = `${crypto.randomBytes(32).toString("base64")}.${fileType}`;
   const filePath = path.join(cfg.assetsRoot, videoName);
 
   Bun.write(filePath, file);
